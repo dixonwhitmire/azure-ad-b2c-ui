@@ -1,20 +1,52 @@
 <template>
-  <div id="customer-details">
-    <label for="customer-select">Select a customer id:</label>
-    <select name="customers" id="customer-select">
-      <option value="">--Please select an option--</option>
-      <option value="all">All</option>
-      <option value="1">1</option>
-      <option value="2">2</option>
-      <option value="3">3</option>
-      <option value="4">4</option>
-      <option value="5">5</option>
-    </select>
-  </div>
+    <div id="customer-data">
+      <h3>Customer Details Search For {{ customerSearchType }}</h3>
+        <table v-if="this.customerData">
+          <tr>
+            <th>ID</th>
+            <th>Email</th>
+            <th>First Name</th>
+            <th>Last Name</th>
+          </tr>
+          <tr>
+            <td>{{ customerData.id }}</td>
+            <td>{{ customerData.email }}</td>
+            <td>{{ customerData.firstName }}</td>
+            <td>{{ customerData.lastName }}</td>
+          </tr>
+        </table>
+    </div>
 </template>
 
 <script>
+import axios from 'axios'
+import { mapGetters } from 'vuex'
+
 export default {
-  name: 'customer-details'
+  name: 'customer-details',
+  data () {
+    return {
+      customerData: null
+    }
+  },
+  computed: {
+    ...mapGetters(['customerSearchType'])
+  },
+  methods: {
+    fetchCustomerData (customerId) {
+      var url = 'http://localhost:8090/api/customers/' + customerId
+      return axios.get(url)
+        .then(response => {
+          this.customerData = response.data
+        })
+    }
+  },
+  watch: {
+    customerSearchType (newValue, oldValue) {
+      if (newValue != null && newValue !== oldValue) {
+        this.customerData = this.fetchCustomerData(newValue)
+      }
+    }
+  }
 }
 </script>
