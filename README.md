@@ -18,7 +18,10 @@ The award-winning, minimal UI is used to demo integrations with Azure AD B2C and
 ## Project setup
 
 Complete the setup steps for:
-- [Azure AD B2C](https://github.com/microsoft/azure-spring-boot/tree/master/azure-spring-boot-samples/azure-active-directory-b2c-oidc-spring-boot-sample)
+- Azure AD B2C
+- - [Create Azure AD B2C Tenant](https://docs.microsoft.com/en-us/azure/active-directory-b2c/tutorial-create-tenant)
+- - [Register an Azure AD B2C Application](https://docs.microsoft.com/en-us/azure/active-directory-b2c/tutorial-register-applications)
+- - [Create Azure AD B2C User Flows](https://docs.microsoft.com/en-us/azure/active-directory-b2c/tutorial-create-user-flows)
 - [Sample Customer Microservice](https://github.com/dixonwhitmire/azure-ad-b2c-microservice)
 
 ### Install application dependencies
